@@ -149,13 +149,27 @@
         for(let optionId in param.options) {
           // determine option value, e.g. optionId = 'olives', option = { label: 'Olives', price: 2, default: true }
           const option = param.options[optionId];
+          // const with condition const
+          const formDataCondition = formData[paramId] && formData[paramId].includes(optionId);
           // check if pramId is inside formData and at the same time includes optionID
-          if (formData[paramId] && formData[paramId].includes(optionId)) {
+          if (formDataCondition) {
             // Increse price if not default
             if (!option.default) price += option.price;
           } else {
             // Decrese price if default is not selected
             if (option.default) price -= option.price;
+          }
+          //find image with class .paramId-optionId
+          const optionImage = thisProduct.imageWrapper.querySelector(`.${paramId}-${optionId}`);
+          // check if optionImage is not null
+          if(optionImage) {
+            if (formDataCondition) {
+              // add class active
+              optionImage.classList.add(classNames.menuProduct.imageVisible);
+            } else {
+              // else class active
+              optionImage.classList.remove(classNames.menuProduct.imageVisible);
+            }
           }
         }
 
