@@ -62,9 +62,10 @@
       thisProduct.getElement();
       thisProduct.initAccordion();
       thisProduct.initOrderForm();
+      thisProduct.initAmountWidget();
       thisProduct.processOrder();
-
-      console.log('new Product:', thisProduct);
+      
+    //  console.log('new Product:', thisProduct);
     }
 
     renderInMenu(){
@@ -87,6 +88,13 @@
       thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
       thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
       thisProduct.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper);
+      thisProduct.amountWidgetElem = thisProduct.element.querySelector(select.menuProduct.amountWidget);
+    }
+
+    initAmountWidget(){
+      const thisProduct = this;
+
+      thisProduct.amountWidget = new AmountWidget(thisProduct.amountWidgetElem);
     }
 
     initAccordion() {
@@ -101,7 +109,7 @@
           if((activeProduct) && (activeProduct != thisProduct.element)){
             /* remove active class */
             activeProduct.classList.remove(classNames.menuProduct.wrapperActive);
-            console.log(activeProduct);
+            //console.log(activeProduct);
           }
         }
         /*toogle active class on thisProduct */
@@ -113,7 +121,7 @@
     initOrderForm() {
       const thisProduct = this;
 
-      console.log('initOrderForm');
+      //console.log('initOrderForm');
 
       thisProduct.form.addEventListener('submit', function(event){
         event.preventDefault();
@@ -137,7 +145,7 @@
 
       // covert form to object structure e.g. { sauce: ['tomato'], toppings: ['olives', 'redPeppers']}
       const formData = utils.serializeFormToObject(thisProduct.form);
-      console.log('formData', formData);
+      //console.log('formData', formData);
 
       // set price to default price
       let price = thisProduct.data.price;
@@ -179,6 +187,61 @@
       thisProduct.priceElem.innerHTML = price;
     }
   }
+
+  class AmountWidget {
+    constructor(element){
+      const thisWidget = this;
+      
+      thisWidget.getElements(element);
+      thisWidget.initActions();
+      thisWidget.setValue(thisWidget.input.value);
+      console.log('AmountWidget:', thisWidget);
+      console.log('constructor argument:', element);
+    }
+
+    getElements(element){
+      const thisWidget = this;
+
+      thisWidget.element = element;
+      thisWidget.input = thisWidget.element.querySelector(select.widgets.amount.input);
+      thisWidget.linkDecrease = thisWidget.element.querySelector(select.widgets.amount.linkDecrease);
+      thisWidget.linkIncrease = thisWidget.element.querySelector(select.widgets.amount.linkIncrease);
+    }
+
+    setValue(value) {
+      const thisWidget = this;
+
+      const newValue = parseInt(value);
+      console.log((newValue > settings.amountWidget.defaultMin) , (newValue < settings.amountWidget.defaultMax));
+      console.log(newValue);
+      /* TODO: Add validation */
+      if ((thisWidget.value !== newValue) && !isNaN(newValue)) {
+        thisWidget.value = newValue;
+      }
+
+      thisWidget.input.value = thisWidget.value;
+    }
+    initActions() {
+      const thisWidget = this;
+
+      thisWidget.input.addEventListener('change', function() {
+        thisWidget.setValue(thisWidget.input.value);
+      });
+  
+      thisWidget.linkDecrease.addEventListener('click', function(event) {
+        event.preventDefault();
+        thisWidget.setValue(thisWidget.value - 1);
+      });
+  
+      thisWidget.linkIncrease.addEventListener('click', function(event) {
+        event.preventDefault();
+        thisWidget.setValue(thisWidget.value + 1);
+      });
+    }
+
+  }
+
+
 
   const app = {
 
