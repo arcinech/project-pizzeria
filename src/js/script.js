@@ -95,6 +95,9 @@
       const thisProduct = this;
 
       thisProduct.amountWidget = new AmountWidget(thisProduct.amountWidgetElem);
+      thisProduct.amountWidgetElem.addEventListener('updated', function(){
+        thisProduct.processOrder();
+      });
     }
 
     initAccordion() {
@@ -183,6 +186,7 @@
 
         //check if increse or decrese
       }
+      price *= thisProduct.amountWidget.value;
       // update calculated price in the HTML
       thisProduct.priceElem.innerHTML = price;
     }
@@ -191,7 +195,8 @@
   class AmountWidget {
     constructor(element){
       const thisWidget = this;
-      
+
+      thisWidget.value = settings.amountWidget.defaultValue;
       thisWidget.getElements(element);
       thisWidget.initActions();
       thisWidget.setValue(thisWidget.input.value);
@@ -214,19 +219,21 @@
       const newValue = parseInt(value);
       /* TODO: Add validation */
       if ((thisWidget.value !== newValue) && !isNaN(newValue)) {
-        if (newValue < settings.amountWidget.defaultMin) {
-          thisWidget.value = 0;
-        }
-        else if (newValue > settings.amountWidget.defaultMax) {
-          thisWidget.value = 10;
-        }
-        else {
-          thisWidget.value = newValue;
-        }
+        if (newValue < settings.amountWidget.defaultMin) thisWidget.value = 0;
+        else if (newValue > settings.amountWidget.defaultMax) thisWidget.value = 10;
+        else thisWidget.value = newValue;
       }
-
       thisWidget.input.value = thisWidget.value;
+      thisWidget.announce();
     }
+
+    announce(){
+      const thisWidget = this;
+
+      const event = new Event('updated');
+      thisWidget.element.dispatchEvent(event);
+    }
+
     initActions() {
       const thisWidget = this;
 
