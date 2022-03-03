@@ -375,6 +375,19 @@
       const generatedDOM = utils.createDOMFromHTML(generatedHTML);
 
       thisCart.dom.productList.appendChild(generatedDOM);
+
+      thisCart.products.push(menuProduct);
+      console.log('thisCart.products', thisCart.products);
+    }
+  }
+
+  class CartProduct{
+    constructor(element){
+      const thisCartProduct = this;
+    }
+
+    getElements(element){
+      const thisCartProduct = this;
     }
   }
 
