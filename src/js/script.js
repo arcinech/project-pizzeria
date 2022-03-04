@@ -265,7 +265,7 @@
           const option = param.options[optionId];
           const formDataCondition = formData[paramId] && formData[paramId].includes(optionId);
           if (formDataCondition) {
-            params[paramId].options = {option: option.label};
+            params[paramId].options[optionId] = option.label;
           }
         }
       
