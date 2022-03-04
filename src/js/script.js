@@ -382,6 +382,10 @@
         thisCart.remove(event.detail.cartProduct);
         thisCart.update();
       });
+      
+      thisCart.dom.productList.addEventListener('edit', function(event){
+        event.preventDefault();
+      });
     }
     
     add(menuProduct){
