@@ -99,7 +99,7 @@
       thisProduct.initAmountWidget();
       thisProduct.processOrder();
       
-    //  console.log('new Product:', thisProduct);
+    //  
     }
 
     renderInMenu(){
@@ -147,7 +147,7 @@
           if((activeProduct) && (activeProduct != thisProduct.element)){
             /* remove active class */
             activeProduct.classList.remove(classNames.menuProduct.wrapperActive);
-            //console.log(activeProduct);
+            //
           }
         }
         /*toogle active class on thisProduct */
@@ -159,7 +159,7 @@
     initOrderForm() {
       const thisProduct = this;
 
-      //console.log('initOrderForm');
+      //
 
       thisProduct.dom.form.addEventListener('submit', function(event){
         event.preventDefault();
@@ -184,7 +184,7 @@
 
       // covert form to object structure e.g. { sauce: ['tomato'], toppings: ['olives', 'redPeppers']}
       const formData = utils.serializeFormToObject(thisProduct.dom.form);
-      //console.log('formData', formData);
+      //
 
       // set price to default price
       let price = thisProduct.data.price;
@@ -260,7 +260,7 @@
           label: param.label,
           options:{}
         };
-        console.log(params[paramId]);
+        
         for(let optionId in param.options) {
           const option = param.options[optionId];
           const formDataCondition = formData[paramId] && formData[paramId].includes(optionId);
@@ -282,8 +282,8 @@
       thisWidget.getElements(element);
       thisWidget.initActions();
       thisWidget.setValue(thisWidget.dom.input.value);
-      console.log('AmountWidget:', thisWidget);
-      console.log('constructor argument:', element);
+      
+      
     }
 
     getElements(element){
@@ -345,8 +345,6 @@
 
       thisCart.getElements(element);
       thisCart.initActions();
-
-      console.log('new Cart', thisCart);
     }
 
     getElements(element){
@@ -370,7 +368,7 @@
     add(menuProduct){
       const thisCart = this;
 
-      console.log('adding product', menuProduct);
+      
       const generatedHTML = templates.cartProduct(menuProduct);
       const generatedDOM = utils.createDOMFromHTML(generatedHTML);
 
@@ -383,7 +381,7 @@
     initMenu: function(){
       const thisApp = this;
 
-      console.log('thisApp.data:', thisApp.data); 
+      
 
       for(let productData in thisApp.data.products){
         new Product(productData, thisApp.data.products[productData]);
@@ -405,11 +403,11 @@
 
     init: function(){
       const thisApp = this;
-      console.log('*** App starting ***');
-      console.log('thisApp:', thisApp);
-      console.log('classNames:', classNames);
-      console.log('settings:', settings);
-      console.log('templates:', templates);
+      
+      
+      
+      
+      
 
       thisApp.initData();
       thisApp.initMenu();
