@@ -219,8 +219,8 @@
       const newValue = parseInt(value);
       /* TODO: Add validation */
       if ((thisWidget.value !== newValue) && !isNaN(newValue)) {
-        if (newValue < settings.amountWidget.defaultMin) thisWidget.value = 0;
-        else if (newValue > settings.amountWidget.defaultMax) thisWidget.value = 10;
+        if (newValue < settings.amountWidget.defaultMin) thisWidget.value = (settings.amountWidget.defaultMin - 1);
+        else if (newValue > settings.amountWidget.defaultMax) thisWidget.value = (settings.amountWidget.defaultMax + 1);
         else thisWidget.value = newValue;
       }
       thisWidget.input.value = thisWidget.value;
