@@ -99,7 +99,7 @@
       thisProduct.initAmountWidget();
       thisProduct.processOrder();
       
-    //  console.log('new Product:', thisProduct);
+    //  
     }
 
     renderInMenu(){
@@ -147,7 +147,7 @@
           if((activeProduct) && (activeProduct != thisProduct.element)){
             /* remove active class */
             activeProduct.classList.remove(classNames.menuProduct.wrapperActive);
-            //console.log(activeProduct);
+            //
           }
         }
         /*toogle active class on thisProduct */
@@ -159,7 +159,7 @@
     initOrderForm() {
       const thisProduct = this;
 
-      //console.log('initOrderForm');
+      //
 
       thisProduct.dom.form.addEventListener('submit', function(event){
         event.preventDefault();
@@ -175,6 +175,7 @@
       thisProduct.dom.cartButton.addEventListener('click', function(event){
         event.preventDefault();
         thisProduct.processOrder();
+        thisProduct.addToCart();
       });
     }
 
@@ -183,7 +184,7 @@
 
       // covert form to object structure e.g. { sauce: ['tomato'], toppings: ['olives', 'redPeppers']}
       const formData = utils.serializeFormToObject(thisProduct.dom.form);
-      //console.log('formData', formData);
+      //
 
       // set price to default price
       let price = thisProduct.data.price;
@@ -221,9 +222,55 @@
 
         //check if increse or decrese
       }
+      thisProduct.priceSingle = price;
       price *= thisProduct.amountWidget.value;
       // update calculated price in the HTML
       thisProduct.dom.priceElem.innerHTML = price;
+    }
+
+    addToCart(){
+      const thisProduct = this;
+
+      app.cart.add(thisProduct.prepareCartProduct());
+    }
+
+    prepareCartProduct(){
+      const thisProduct = this;
+
+      const productSummary = {
+        id: thisProduct.id,
+        name: thisProduct.data.name,
+        amount: thisProduct.amountWidget.value,
+        priceSingle: thisProduct.priceSingle,
+        price: (thisProduct.amountWidget.value * thisProduct.priceSingle),
+        params: thisProduct.prepareCartProductParams()
+      };
+      return productSummary;
+    }
+
+    prepareCartProductParams(){
+      const thisProduct = this;
+
+      const formData = utils.serializeFormToObject(thisProduct.dom.form);
+      const params = {};
+      for(let paramId in thisProduct.data.params) {
+        const param = thisProduct.data.params[paramId];  
+
+        params[paramId] = {
+          label: param.label,
+          options:{}
+        };
+        
+        for(let optionId in param.options) {
+          const option = param.options[optionId];
+          const formDataCondition = formData[paramId] && formData[paramId].includes(optionId);
+          if (formDataCondition) {
+            params[paramId].options[optionId] = option.label;
+          }
+        }
+      
+      }
+      return params;
     }
   }
 
@@ -235,8 +282,8 @@
       thisWidget.getElements(element);
       thisWidget.initActions();
       thisWidget.setValue(thisWidget.dom.input.value);
-      console.log('AmountWidget:', thisWidget);
-      console.log('constructor argument:', element);
+      
+      
     }
 
     getElements(element){
@@ -298,8 +345,6 @@
 
       thisCart.getElements(element);
       thisCart.initActions();
-
-      console.log('new Cart', thisCart);
     }
 
     getElements(element){
@@ -308,6 +353,7 @@
       thisCart.dom = {};
       thisCart.dom.wrapper = element;
       thisCart.dom.toggleTrigger = thisCart.dom.wrapper.querySelector(select.cart.toggleTrigger);
+      thisCart.dom.productList = thisCart.dom.wrapper.querySelector(select.cart.productList);
     }
 
     initActions(){
@@ -318,6 +364,16 @@
         thisCart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive);
       });
     }
+    
+    add(menuProduct){
+      const thisCart = this;
+
+      
+      const generatedHTML = templates.cartProduct(menuProduct);
+      const generatedDOM = utils.createDOMFromHTML(generatedHTML);
+
+      thisCart.dom.productList.appendChild(generatedDOM);
+    }
   }
 
   const app = {
@@ -325,7 +381,7 @@
     initMenu: function(){
       const thisApp = this;
 
-      console.log('thisApp.data:', thisApp.data); 
+      
 
       for(let productData in thisApp.data.products){
         new Product(productData, thisApp.data.products[productData]);
@@ -347,11 +403,11 @@
 
     init: function(){
       const thisApp = this;
-      console.log('*** App starting ***');
-      console.log('thisApp:', thisApp);
-      console.log('classNames:', classNames);
-      console.log('settings:', settings);
-      console.log('templates:', templates);
+      
+      
+      
+      
+      
 
       thisApp.initData();
       thisApp.initMenu();
