@@ -78,7 +78,7 @@
     },
     // CODE ADDED END
     db: {
-      url: '//localhost:3131',
+      url: 'http://localhost:3131',
       products: 'products',
       orders: 'orders',
     },
@@ -104,7 +104,6 @@
       thisProduct.initAmountWidget();
       thisProduct.processOrder();
       
-    //  
     }
 
     renderInMenu(){
@@ -469,8 +468,6 @@
       payload.totalNumber = thisCart.totalNumber;
       payload.deliverFee = thisCart.dom.deliveryFee.innerHTML;
 
-      console.log('payload', payload);
-
       const options = {
         method: 'POST',
         headers: {
@@ -479,7 +476,9 @@
         body: JSON.stringify(payload),
       };
 
-      fetch(url, options);
+      if (payload.products && payload.products.length){
+        fetch(url, options);
+      }
 
     }
   }
