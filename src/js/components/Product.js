@@ -150,7 +150,7 @@ class Product {
 
     const event = new CustomEvent('add-to-cart', {
       bubbles: true,
-      display: {
+      detail: {
         product: thisProduct,
       },
     });
