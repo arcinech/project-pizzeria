@@ -3,18 +3,17 @@ import AmountWidget from './AmountWidget.js';
 
 class Booking{
   constructor(element){
-    this.getElements(element);
     this.render(element);
     this.initWidgets();
   }
-  getElements(element){
+
+  render(element){
     const thisBooking = this;
     thisBooking.dom  = {};
+    console.log(element);
     thisBooking.dom.wrapper = element;
     thisBooking.dom.peopleAmount = thisBooking.dom.wrapper.querySelector(select.booking.peopleAmount);
     thisBooking.dom.hoursAmount = thisBooking.dom.wrapper.querySelector(select.booking.hoursAmount);
-  }
-  render(){
     /* generate HTML based on template */
     const generatedHTML = templates.bookingWidget();
     this.dom.wrapper.innerHTML = generatedHTML;
