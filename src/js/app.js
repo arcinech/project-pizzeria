@@ -2,6 +2,7 @@
 import { select, settings } from './settings.js';
 import Cart from './components/Cart.js';
 import Product from './components/Product.js';
+import Booking from './components/Booking.js';
 
 
 const app = {
@@ -48,11 +49,17 @@ const app = {
     });
   },
 
+  initBooking: function(){
+    const bookingElem = document.querySelector(select.containerOf.booking);
+    new Booking(bookingElem);
+  },
+
   init: function(){
     const thisApp = this;
 
     thisApp.initData();
     thisApp.initCart();
+    thisApp.initBooking();
   },
 };
 
