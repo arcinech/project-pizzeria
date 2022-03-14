@@ -12,20 +12,22 @@ class Booking{
     thisBooking.dom  = {};
     console.log(element);
     thisBooking.dom.wrapper = element;
-    thisBooking.dom.peopleAmount = thisBooking.dom.wrapper.querySelector(select.booking.peopleAmount);
-    thisBooking.dom.hoursAmount = thisBooking.dom.wrapper.querySelector(select.booking.hoursAmount);
     /* generate HTML based on template */
     const generatedHTML = templates.bookingWidget();
     this.dom.wrapper.innerHTML = generatedHTML;
+
+    thisBooking.dom.peopleAmount = thisBooking.dom.wrapper.querySelector(select.booking.peopleAmount);
+    thisBooking.dom.hoursAmount = thisBooking.dom.wrapper.querySelector(select.booking.hoursAmount);
   }
 
   initWidgets(){
-    this.peopleAmount = new AmountWidget(this.dom.peopleAmount);
-    this.dom.peopleAmount.addEventListener('change', function(){
+    const thisBooking = this;
+    thisBooking.peopleAmount = new AmountWidget(thisBooking.dom.peopleAmount);
+    thisBooking.dom.peopleAmount.addEventListener('change', function(){
 
     });
-    this.dom.hoursAmount = new AmountWidget(this.dom.hoursAmount);
-    this.dom.hoursAmount.addEventListener('change', function(){
+    thisBooking.dom.hoursAmount = new AmountWidget(thisBooking.dom.hoursAmount);
+    thisBooking.dom.hoursAmount.addEventListener('change', function(){
 
     });
 
