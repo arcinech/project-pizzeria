@@ -1,5 +1,5 @@
 import {select, templates, settings, classNames} from '../settings.js';
-import {utils} from '../utils.js';
+import utils from '../utils.js';
 import CartProduct from './CartProduct.js';
 
 class Cart{
@@ -70,7 +70,6 @@ class Cart{
 
     thisCart.products.push(new CartProduct(menuProduct, generatedDOM));
     thisCart.update();
-    console.log(this.products);
   }
 
   update(){
