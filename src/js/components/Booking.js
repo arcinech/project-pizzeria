@@ -11,6 +11,7 @@ class Booking{
     thisBooking.getElements();
     thisBooking.freeTable = '';
     thisBooking.initWidgets();
+    thisBooking.initActions();
     thisBooking.getData();
 
 
@@ -97,9 +98,7 @@ class Booking{
 
       }
     }
-
-    // // console.log('this.booked', this.booked);
-
+    
     thisBooking.updateDOM();
   }
 
@@ -193,9 +192,14 @@ class Booking{
     thisBooking.datePicker = new DatePicker(thisBooking.dom.datePicker);
     thisBooking.hourPicker = new HourPicker(thisBooking.dom.hourPicker);
 
+  }
+
+  initActions(){
+    const thisBooking = this;
+
     thisBooking.dom.wrapper.addEventListener('updated', function(){
       thisBooking.updateDOM();
-      this.freeTable = '';
+      thisBooking.freeTable = '';
     });
 
     thisBooking.dom.floorPlan.addEventListener('click', function(event){
