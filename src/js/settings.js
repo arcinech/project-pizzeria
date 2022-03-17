@@ -47,6 +47,8 @@ export const select = {
     starters: '.booking-options .checkbox',
     starter: 'input[name="starter"]',
     submit: '.order-confirmation [type="submit"]',
+    phone: '[name="phone"]',
+    address: '[name="address"]',
   },
   nav: {
     links: '.main-nav a',

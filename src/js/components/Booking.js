@@ -9,7 +9,7 @@ class Booking{
     const thisBooking = this;
     thisBooking.render(element);
     thisBooking.getElements();
-    thisBooking.freeTable = '';
+    thisBooking.selectedTable = '';
     thisBooking.initWidgets();
     thisBooking.initActions();
     thisBooking.getData();
@@ -177,8 +177,8 @@ class Booking{
     thisBooking.dom.floorPlan = thisBooking.dom.wrapper.querySelector(select.containerOf.floorPlan);
 
     //using phone and adress select from cart inside booking wrapper
-    thisBooking.dom.phoneNumber = thisBooking.dom.wrapper.querySelector(select.cart.phone);
-    thisBooking.dom.address = thisBooking.dom.wrapper.querySelector(select.cart.address);
+    thisBooking.dom.phoneNumber = thisBooking.dom.wrapper.querySelector(select.booking.phone);
+    thisBooking.dom.address = thisBooking.dom.wrapper.querySelector(select.booking.address);
 
     thisBooking.dom.starters = thisBooking.dom.wrapper.querySelectorAll(select.booking.starters);
     thisBooking.dom.submitReservation = thisBooking.dom.wrapper.querySelector(select.booking.submit);
@@ -199,7 +199,7 @@ class Booking{
 
     thisBooking.dom.wrapper.addEventListener('updated', function(){
       thisBooking.updateDOM();
-      thisBooking.freeTable = '';
+      thisBooking.selectedTable = '';
     });
 
     thisBooking.dom.floorPlan.addEventListener('click', function(event){
@@ -224,8 +224,8 @@ class Booking{
       else table.classList.toggle(classNames.booking.selectedTable);
     }
 
-    if (thisBooking.freeTable != clickedElementId) thisBooking.freeTable = clickedElementId;
-    else thisBooking.freeTable = '';
+    if (thisBooking.selectedTable != clickedElementId) thisBooking.selectedTable = clickedElementId;
+    else thisBooking.selectedTable = '';
   }
   
   initTables(event){
@@ -248,7 +248,7 @@ class Booking{
 
     const booking = {};
 
-    booking.table = parseInt(thisBooking.freeTable);
+    booking.table = parseInt(thisBooking.selectedTable);
     booking.date = thisBooking.datePicker.value;
     booking.hour = thisBooking.hourPicker.value;
     booking.duration = parseInt(thisBooking.hoursAmount.value);
@@ -280,9 +280,11 @@ class Booking{
       && booking.table
     ){
       fetch(url, options)
-        .then(thisBooking.makeBooked(booking.date, booking.hour, booking.duration, booking.table));
-      thisBooking.updateDOM();
-      thisBooking.resetValues();
+        .then(function(){
+          thisBooking.makeBooked(booking.date, booking.hour, booking.duration, booking.table);
+          thisBooking.updateDOM();
+          thisBooking.resetValues();
+        });
     } else {
       window.alert('Please, fill data for reservation!');
     }
