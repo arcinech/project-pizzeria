@@ -8,6 +8,7 @@ class Booking{
   constructor(element){
     const thisBooking = this;
     thisBooking.render(element);
+    thisBooking.getElements();
     thisBooking.freeTable = '';
     thisBooking.initWidgets();
     thisBooking.getData();
@@ -164,6 +165,10 @@ class Booking{
     const generatedHTML = templates.bookingWidget();
     thisBooking.dom.wrapper.innerHTML = generatedHTML;
 
+  }
+
+  getElements(){
+    const thisBooking = this;
     thisBooking.dom.peopleAmount = thisBooking.dom.wrapper.querySelector(select.booking.peopleAmount);
     thisBooking.dom.hoursAmount = thisBooking.dom.wrapper.querySelector(select.booking.hoursAmount);
     thisBooking.dom.datePicker = thisBooking.dom.wrapper.querySelector(select.widgets.datePicker.wrapper);
