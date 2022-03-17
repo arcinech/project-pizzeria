@@ -135,9 +135,7 @@ class Booking{
       allAvailable = true;
     }
     for(let table of thisBooking.dom.tables){
-      table.classList.remove(classNames.booking.selectedTable);
       let tableId = table.getAttribute(settings.booking.tableIdAttribute);
-      // // console.log(tableId);
       
       if(!isNaN(tableId)){
         tableId = parseInt(tableId);
@@ -152,9 +150,9 @@ class Booking{
       } else {
         table.classList.remove(classNames.booking.tableBooked);
       }
-    }
 
-    thisBooking.freeTable = '';
+      table.classList.remove(classNames.booking.selectedTable);
+    }
   }
 
   render(element){
@@ -174,11 +172,12 @@ class Booking{
     thisBooking.dom.tables = thisBooking.dom.wrapper.querySelectorAll(select.booking.tables);
     thisBooking.dom.floorPlan = thisBooking.dom.wrapper.querySelector(select.containerOf.floorPlan);
 
+    //using phone and adress select from cart inside booking wrapper
     thisBooking.dom.phoneNumber = thisBooking.dom.wrapper.querySelector(select.cart.phone);
     thisBooking.dom.address = thisBooking.dom.wrapper.querySelector(select.cart.address);
 
     thisBooking.dom.starters = thisBooking.dom.wrapper.querySelectorAll(select.booking.starters);
-    thisBooking.dom.bookTable = thisBooking.dom.wrapper.querySelector(select.booking.submit);
+    thisBooking.dom.submitReservation = thisBooking.dom.wrapper.querySelector(select.booking.submit);
   }
 
   initWidgets(){
@@ -195,11 +194,10 @@ class Booking{
     });
 
     thisBooking.dom.floorPlan.addEventListener('click', function(event){
-      thisBooking.initTables(event);
-      
+      thisBooking.initTables(event);     
     });
-    // console.log(this.freeTable);
-    thisBooking.dom.bookTable.addEventListener('click', function(event){
+
+    thisBooking.dom.submitReservation.addEventListener('click', function(event){
       event.preventDefault();
       thisBooking.sendBooking();
     });
@@ -217,8 +215,8 @@ class Booking{
       else table.classList.toggle(classNames.booking.selectedTable);
     }
 
-    if (thisBooking.freeTable != clickedElementId) return thisBooking.freeTable = clickedElementId;
-    else return thisBooking.freeTable = '';
+    if (thisBooking.freeTable != clickedElementId) thisBooking.freeTable = clickedElementId;
+    else thisBooking.freeTable = '';
   }
   
   initTables(event){
