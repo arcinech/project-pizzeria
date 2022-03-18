@@ -48,7 +48,6 @@ class Product {
     thisProduct.dom.amountWidgetElem.addEventListener('updated', function(){
       thisProduct.processOrder();
     });
-    console.log(thisProduct.amountWidget);
   }
 
   initAccordion() {
