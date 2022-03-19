@@ -65,7 +65,7 @@
 
   <div id="pages">
     <section id="main">
-      <div id="main-page" class="main-wrapper container"></div>
+      <div id="home-page" class="home-page container"></div>
     </section>
     <section id="order">
       <div id="product-list" class="product-list container"></div>
@@ -248,49 +248,52 @@
     </div>
   </script>
 
-  <script id="template-main-page" type="text/x-handlebars-template">
-    <div class="splash">
-      <div class="order_online" id="splash-order">
-        <h2>ORDER ONLINE</h2>
-      </div>
-      <div class="book_online" id="splash-book">
-        <h2>ORDER ONLINE</h2>
-      </div>
-      <div class="order_online">
-        <h2>OPEN HOUTS:</h2>
-        <p>TUE-SUN, 12PM - 12AM</p>
-      </div>
-    </div>
-    <div class="carrousel">
-      {{#each cellItem}}
-      <div class="item">
-        <div class="carrousel-item">
-          {{{ this }}}
-          <div class="carrousel-text">
-            <h4>{{{carousel-title}}}</h4>
-            <p>{{{carousel-content}}}</p>
-            <p>{{{carousel-author}}}</p>
-          </div> 
+  <script id="template-home-page" type="text/x-handlebars-template">
+    <section class="home-page">
+      <div class="splash">
+        <div class="home-links">
+          <div class="order_online">
+            <a href="#order">ORDER ONLINE</a>
+          </div>
+          <div class="book_online"">
+            <a href="#booking">ORDER ONLINE</a>
+          </div>
+        </div>
+        <div class="open-hours">
+          <h2>OPEN HOURS:</h2>
+          <p>TUE-SUN, {{openHours}}</p>
         </div>
       </div>
-      {{/each}}
-    </div>
-    <div class="gallery">
-      <div class="gallery_image">
-        {{#each images}}
-        {{{ this }}}
+      <div class="main-carousel">
+        {{#each carouselItem}}
+        <div class="carousel-cell">
+          <div class=" carousel-image">
+            {{{ image }}}
+          </div>
+            <div class="carrousel-text">
+              <h4>{{ title }}</h4>
+              <p>{{ text }}</p>
+              <p>{{ author}}</p>
+            </div> 
+        </div>
         {{/each}}
       </div>
-      <div class="icon1"></div>
-      <div class="icon2"></div>
-    </div>
-    <div class="notes">
-      <a href="#">View more on Instagram</a>
-    </div>
+      <div class="gallery">
+        {{#each gallery}}
+        <div class="gallery_image">
+          {{{ this }}}
+        </div>
+        {{/each}}
+        <div class="icon1"></div>
+        <div class="icon2"></div>
+      </div>
+      <div class="notes">
+        <a href="#">View more on Instagram</a>
+      </div>
+    </section>
+    </script>
 
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js"></script>
   <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script src="vendor/range-slider.min.js"></script>
