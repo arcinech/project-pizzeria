@@ -1,10 +1,12 @@
 import {templates, select, settings} from '../settings.js';
 import utils from '../utils.js';
+import Carousel from './Carousel.js';
 
 class Home{
   constructor(data){
     console.log(data);
     this.render(data);
+    this.initWidget();
   }
 
   render(data){
@@ -20,15 +22,17 @@ class Home{
     const generatedHTML = templates.homePage(this.data);
     // console.log(generatedHTML);
     this.element = utils.createDOMFromHTML(generatedHTML);
+    this.dom = {};
 
-    const homeContainer = document.querySelector(select.containerOf.homeContainer);
+    this.dom.wrapper = document.querySelector(select.containerOf.homeContainer);
 
-    homeContainer.appendChild(this.element);
+    this.dom.wrapper.appendChild(this.element);
   }
 
   initWidget(){
-    const carrousel = this.querySelector('.main-carousel');
-    let flkty = new Flickity(carrousel);
+    this.dom.carousel = this.dom.wrapper.querySelector(settings.home.carousel);
+    //initWidget on element this.dom.carousel with class Carousel
+    new Carousel(this.dom.carousel);
   }
 }
 

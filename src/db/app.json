@@ -204,12 +204,12 @@
     ],
     "homePage":{
        "gallery": [
-         "<img class=\"gallery\" src=\"images/assets/pizza-4.jpg\">",
-         "<img class=\"gallery\" src=\"images/assets/pizza-5.jpg\">",
-         "<img class=\"gallery\" src=\"images/assets/pizza-6.jpg\">",
-         "<img class=\"gallery\" src=\"images/assets/pizza-7.jpg\">",
-         "<img class=\"gallery\" src=\"images/assets/pizza-8.jpg\">",
-         "<img class=\"gallery\" src=\"images/assets/pizza-9.jpg\">"
+         "<img src=\"images/assets/pizza-4.jpg\">",
+         "<img src=\"images/assets/pizza-5.jpg\">",
+         "<img src=\"images/assets/pizza-6.jpg\">",
+         "<img src=\"images/assets/pizza-7.jpg\">",
+         "<img src=\"images/assets/pizza-8.jpg\">",
+         "<img src=\"images/assets/pizza-9.jpg\">"
        ],
        "carouselItem": [
          {"image":"<img src=\"images/assets/pizza-1.jpg\">",

@@ -75,6 +75,7 @@ export const select = {
   },
   home: {
     links: '.home-links',
+    carousel: '.main-carousel',
   }
   // CODE ADDED END
 };
