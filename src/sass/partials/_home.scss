@@ -1,0 +1,197 @@
+.home-page{
+    padding: 0 48px;
+
+    .home-inner > *:not(.notes) {
+        padding: 100px 0 0 0;
+    }
+
+    .home-links{
+
+        @include flex(row, center, center);
+        padding: 0 0 5px 0;
+        gap: 5px;
+        font-family: $font-header;
+        font-weight: $font-bold;
+        font-size: 26px;
+
+        > * {
+            @include btn($color-dark, $color-light, $color-dark);
+            @include flex(column, center, center);
+            height: 120px;
+            width: 100%;
+            flex-basis: calc(50% - 2.5px);
+            padding: 0;
+            transition: $transition;
+            position: relative;
+            > div {
+                @include center();
+                width: 100%;
+            }
+        }
+
+        p {
+            display:none;
+            margin: 0;
+            top: 0;
+            translate: translatex(0);
+        }
+
+        > div:hover {
+            transition: $transition;
+            padding: 0 0 5%;
+            div {
+                position: absolute;
+                width: 100%;
+                top:40%;
+                left: 50%;
+                translate: translate(-50%, -50%);
+            }
+            p {
+                position: absolute;
+                display: block;
+                font-size: 14px;
+                top:40%;
+                translate: translate(-50%, -50%);
+            }
+        }
+    }
+
+    .open-hours{
+        @include btn($color-main, $color-light, $color-main);
+        @include flex(column, center, center);
+        width: 100%;
+        height: 120px;
+        > * {
+            margin: 0;
+        }
+
+        h2 {
+            font-family: $font-header;
+            font-weight: $font-bold;
+            font-size: 26px;
+        }
+
+    }
+
+    .main-carousel{
+        padding: 100px 0 0 0;
+
+        .carousel-cell{
+            display: flex;
+            gap: 39px;
+            width:100%;
+            align-items: flex-start;
+            cursor: pointer;
+
+            .carousel-image{
+                flex: 1 0 auto;
+                width: 192px;
+                aspect-ratio: 1;
+                
+                img{
+                    width: 100%;
+                    height: 100%;
+                    border-radius: $radius;
+                    object-fit: cover;
+                }
+            }
+
+            .carousel-text{
+                .carousel-title {
+                    font-size: 14px;
+                    line-height: 1.2;
+                    margin-top: 25px;
+                }
+
+                margin: 0;
+                flex: auto 0 auto;
+            }
+
+            .carousel-author{
+                font-style: italic;
+            }
+        }
+        .flickity-page-dots {
+            bottom: 0px;
+        }
+    }
+    .gallery{
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+
+        .gallery-image{
+            flex: 0 0 calc(33.3333% - 12px);
+            aspect-ratio: 1;
+            position: relative;
+            z-index:1;
+
+            img{
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: $radius;
+            }
+                
+            .icons {
+                position: absolute;
+                width:100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                font-size: 20px;
+                color: $color-light;
+                display:flex;
+                align-items: center;
+                justify-content: center;
+                opacity: 0;
+                gap: 5px;
+
+                .like {
+                    color: $color-main;
+                }
+
+                .share {
+                    color: $color-light;
+                }
+
+            }
+            
+            &::after{
+                position: absolute;
+                content:'';
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: $color-dark;
+                border-radius: $radius;
+                opacity: 0;
+            }
+
+            &:hover{   
+                &::after{
+                    opacity: 0.5;
+                    transition: $transition;
+                    z-index: 5;
+                }
+                .icons{
+                    opacity: 1;
+                    transition: $transition;
+                    z-index: 10;
+                }
+            }
+        }
+
+
+    }
+
+    .notes {
+        padding: 30px 0;
+
+        a {
+            color: $color-main;
+        }
+    }
+
+}

@@ -30,7 +30,7 @@ class Home{
   }
 
   initWidget(){
-    this.dom.carousel = this.dom.wrapper.querySelector(settings.home.carousel);
+    this.dom.carousel = this.dom.wrapper.querySelector(select.home.carousel);
     //initWidget on element this.dom.carousel with class Carousel
     new Carousel(this.dom.carousel);
   }

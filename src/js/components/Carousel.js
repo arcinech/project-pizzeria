@@ -13,9 +13,9 @@ class Carousel {
     // eslint-disable-next-line no-undef
     new Flickity( this.carousel, {
       cellAlign: 'left',
-      contain: true,
       prevNextButtons: false,
       wrapAround: true,
+      imagesLoaded: true,
       autoPlay: true
     });
   }

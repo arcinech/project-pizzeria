@@ -74,7 +74,7 @@ export const select = {
     remove: '[href="#remove"]',
   },
   home: {
-    links: '.home-links',
+    links: '.home-links a',
     carousel: '.main-carousel',
   }
   // CODE ADDED END
