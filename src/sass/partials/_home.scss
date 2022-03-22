@@ -11,9 +11,6 @@
 
   @include flex(row, center, center);
   gap: 5px;
-  font-family: $font-header;
-  font-weight: $font-bold;
-  font-size: 26px;
 
   > * {
     @include btn(#000000, $color-light, #000000);
@@ -31,6 +28,9 @@
       @include center();
       transition: all 1s;
       width: max-content;
+      font-family: $font-header;
+      font-weight: $font-bold;
+      font-size: 26px;
     }
   }
 
@@ -42,7 +42,7 @@
     left: 50%;
     margin: 0;
     bottom: -40px;
-    font-size: 14px;
+    font-weight: $font-light;
   }
 
   > div:hover {
@@ -74,6 +74,10 @@
     font-family: $font-header;
     font-weight: $font-bold;
     font-size: 26px;
+  }
+
+  p {
+    font-weight: $font-light;
   }
 
 }
