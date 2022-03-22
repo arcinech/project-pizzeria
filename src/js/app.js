@@ -12,32 +12,38 @@ const app = {
 
     thisApp.pages = document.querySelector(select.containerOf.pages).children;
     thisApp.navLinks = document.querySelectorAll(select.nav.links);
-    thisApp.homeLinks = document.querySelectorAll(select.home.links);
-    const idFromHash = window.location.hash.replace('#/', '');
-
+    //const idFromHash = window.location.hash.replace('#/', '');
     let pageMatchingHash = thisApp.pages[0].id;
 
-    for(const page of thisApp.pages){
-      if(page.id == idFromHash){
-        pageMatchingHash = page.id;
-        break;
-      }
-    }
+    // for(const page of thisApp.pages){
+    //   if(page.id == idFromHash){
+    //     pageMatchingHash = page.id;
+    //     break;
+    //   }
+    // }
 
     thisApp.activatePage(pageMatchingHash);
-
-    for(let link of thisApp.navLinks){
-      link.addEventListener('click', function(event){
-        const clickedElement = this;
-        event.preventDefault();
-
-        const id = clickedElement.getAttribute('href').replace('#', '');
-
+    window.location.hash = '#/' + pageMatchingHash;
+    document.addEventListener('click', function(event){
+      event.preventDefault();
+      const clickedElement = event.target;
+      const targetParentClass = clickedElement.offsetParent.className;
+      console.log(event.target);
+      let id ='';
+      console.log(targetParentClass == select.home.link);
+      if (targetParentClass == classNames.pages.navBar 
+        || targetParentClass == select.home.link 
+        || clickedElement.className == select.home.link){
+        if(targetParentClass == classNames.pages.navBar){
+          id = event.target.getAttribute('href').replace('#', '');
+        } else if(targetParentClass == select.home.link) {
+          id = clickedElement.offsetParent.getAttribute(select.home.dataHref).replace('#', '');
+        }
+        else  id = clickedElement.getAttribute(select.home.dataHref).replace('#', '');
         thisApp.activatePage(id);
-
         window.location.hash = '#/' + id;
-      });
-    }
+      }
+    });
 
   },
 
@@ -70,28 +76,7 @@ const app = {
   initHome: function(){
     const thisApp = this;
 
-    thisApp.home = new Home(thisApp.data.homePageData);
-
-    thisApp.home.links = document.querySelectorAll(select.home.links);
-
-    for(let link of thisApp.home.links){
-      link.addEventListener('click', function(event){
-        event.preventDefault();
-        let clickedElement = event.target;
-        console.log(clickedElement);
-        if(clickedElement.offsetParent.className == select.home.link) {
-          clickedElement = clickedElement.offsetParent;
-        }
-
-        console.log(event.target);
-        const id = clickedElement.getAttribute(select.home.dataHref).replace('#', '');
-
-        thisApp.activatePage(id);
-
-        window.location.hash = '#/' + id;
-      });
-    }
-
+    new Home(thisApp.data.homePageData);
 
   },
 

@@ -74,7 +74,7 @@ export const select = {
     remove: '[href="#remove"]',
   },
   home: {
-    links: '.home-links',
+    links: 'home-links',
     carousel: '.main-carousel',
     link: 'home-link',
     dataHref: 'data-href',
@@ -103,6 +103,7 @@ export const classNames = {
   },
   pages: {
     active: 'active',
+    navBar: 'main-nav',
   }
 };
 
