@@ -7,6 +7,7 @@ class Home{
     console.log(data);
     this.render(data);
     this.initWidget();
+    this.initActions();
   }
 
   render(data){
@@ -33,6 +34,14 @@ class Home{
     this.dom.carousel = this.dom.wrapper.querySelector(select.home.carousel);
     //initWidget on element this.dom.carousel with class Carousel
     new Carousel(this.dom.carousel);
+  }
+
+  initActions(){
+    this.dom.gallery = this.dom.wrapper.querySelector('.gallery');
+
+    this.dom.gallery.addEventListener('click', function(event){
+      event.preventDefault();
+    });
   }
 }
 
