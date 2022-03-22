@@ -77,7 +77,8 @@ export const select = {
     links: '.home-links',
     carousel: '.main-carousel',
     link: 'home-link',
-    dataHref: 'data-href'
+    dataHref: 'data-href',
+    gallery: '.gallery',
   }
   // CODE ADDED END
 };

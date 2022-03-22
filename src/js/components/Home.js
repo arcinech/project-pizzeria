@@ -37,7 +37,7 @@ class Home{
   }
 
   initActions(){
-    this.dom.gallery = this.dom.wrapper.querySelector('.gallery');
+    this.dom.gallery = this.dom.wrapper.querySelector(select.home.gallery);
 
     this.dom.gallery.addEventListener('click', function(event){
       event.preventDefault();
