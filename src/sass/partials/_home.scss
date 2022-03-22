@@ -133,6 +133,7 @@
     aspect-ratio: 1;
     position: relative;
     z-index: 1;
+    display: flex;
 
     img {
       width: 100%;
@@ -165,7 +166,7 @@
       }
     }
 
-    &::after {
+    &::before {
       position: absolute;
       content: '';
       top: 0;
@@ -178,7 +179,7 @@
     }
 
     &:hover {
-      &::after {
+      &::before {
         opacity: 0.5;
         transition: $transition;
         z-index: 5;
