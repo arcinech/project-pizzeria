@@ -21,37 +21,38 @@
             width: 100%;
             flex-basis: calc(50% - 2.5px);
             padding: 0;
-            transition: $transition;
+            transition: all 1s;
             position: relative;
+            overflow: hidden;
+            cursor: pointer;
             > div {
                 @include center();
+                transition: all 1s;
                 width: 100%;
             }
         }
 
         p {
-            display:none;
+            position: absolute;
+            transition: all 1s;
+            transform: translateX(-50%);
+            left: 50%;
             margin: 0;
-            top: 0;
-            translate: translatex(0);
+            bottom: -40px;
+            font-size: 14px;
         }
 
         > div:hover {
-            transition: $transition;
-            padding: 0 0 5%;
+           // padding: 0 0 5%;
             div {
-                position: absolute;
+                transition: all 1s;
                 width: 100%;
-                top:40%;
-                left: 50%;
-                translate: translate(-50%, -50%);
+                top:30%;
             }
             p {
-                position: absolute;
-                display: block;
+                
                 font-size: 14px;
-                top:40%;
-                translate: translate(-50%, -50%);
+                transform: translate(-50%, -70px);
             }
         }
     }

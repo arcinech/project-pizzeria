@@ -76,10 +76,15 @@ const app = {
 
     for(let link of thisApp.home.links){
       link.addEventListener('click', function(event){
-        const clickedElement = this;
         event.preventDefault();
+        let clickedElement = event.target;
+        console.log(clickedElement);
+        if(clickedElement.offsetParent.className == select.home.link) {
+          clickedElement = clickedElement.offsetParent;
+        }
 
-        const id = clickedElement.getAttribute('href').replace('#', '');
+        console.log(event.target);
+        const id = clickedElement.getAttribute(select.home.dataHref).replace('#', '');
 
         thisApp.activatePage(id);
 
