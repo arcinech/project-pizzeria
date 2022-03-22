@@ -37,7 +37,7 @@
   p {
     position: absolute;
     transition: all 1s;
-    transform: translateX(-50%);
+    transform: translate(-50%, 40px);
     left: 50%;
     margin: 0;
     bottom: -40px;
@@ -54,7 +54,7 @@
     }
 
     p {
-
+      width: max-content;
       font-size: 14px;
       transform: translate(-50%, -70px);
     }
@@ -157,14 +157,14 @@
       opacity: 0;
       gap: 5px;
 
-      .like {
+      .like, .share {
+        color: $color-light;
+        transition: $transition;
+      }
+
+      .like:hover, .share:hover {
         color: $color-main;
       }
-
-      .share {
-        color: $color-light;
-      }
-
     }
 
     &::after {
