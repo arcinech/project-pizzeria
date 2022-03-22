@@ -15,7 +15,7 @@
   font-weight: $font-bold;
   font-size: 26px;
 
-  >* {
+  > * {
     @include btn(#000000, $color-light, #000000);
     @include flex(column, center, center);
     height: 120px;
@@ -27,14 +27,15 @@
     overflow: hidden;
     cursor: pointer;
 
-    >div {
+    > div {
       @include center();
       transition: all 1s;
-      width: 100%;
+      width: max-content;
     }
   }
 
   p {
+    width: max-content;
     position: absolute;
     transition: all 1s;
     transform: translate(-50%, 40px);
@@ -44,18 +45,15 @@
     font-size: 14px;
   }
 
-  >div:hover {
+  > div:hover {
 
     // padding: 0 0 5%;
     div {
       transition: all 1s;
-      width: 100%;
       top: 30%;
     }
 
     p {
-      width: max-content;
-      font-size: 14px;
       transform: translate(-50%, -70px);
     }
   }
