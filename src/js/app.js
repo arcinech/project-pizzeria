@@ -12,9 +12,10 @@ const app = {
 
     thisApp.pages = document.querySelector(select.containerOf.pages).children;
     thisApp.navLinks = document.querySelectorAll(select.nav.links);
-    //const idFromHash = window.location.hash.replace('#/', '');
+    // const idFromHash = window.location.hash.replace('#/', '');
     let pageMatchingHash = thisApp.pages[0].id;
 
+    // Commented to make main page always active on reload.
     // for(const page of thisApp.pages){
     //   if(page.id == idFromHash){
     //     pageMatchingHash = page.id;
@@ -23,28 +24,36 @@ const app = {
     // }
 
     thisApp.activatePage(pageMatchingHash);
-    window.location.hash = '#/' + pageMatchingHash;
-    document.addEventListener('click', function(event){
-      event.preventDefault();
-      const clickedElement = event.target;
-      const targetParentClass = clickedElement.offsetParent.className;
-      console.log(event.target);
-      let id ='';
-      console.log(targetParentClass == select.home.link);
-      if (targetParentClass == classNames.pages.navBar 
-        || targetParentClass == select.home.link 
-        || clickedElement.className == select.home.link){
-        if(targetParentClass == classNames.pages.navBar){
-          id = event.target.getAttribute('href').replace('#', '');
-        } else if(targetParentClass == select.home.link) {
-          id = clickedElement.offsetParent.getAttribute(select.home.dataHref).replace('#', '');
-        }
-        else  id = clickedElement.getAttribute(select.home.dataHref).replace('#', '');
-        thisApp.activatePage(id);
-        window.location.hash = '#/' + id;
-      }
-    });
 
+    window.location.hash = '#/' + pageMatchingHash;
+
+    thisApp.changePageListener(select.nav.linksWrapper);
+
+  },
+
+  changePageListener(linksWrapper){
+    const thisApp = this;
+    const linksWrapperElement = document.querySelector(linksWrapper);
+
+    linksWrapperElement.addEventListener('click', function(event){
+      event.preventDefault();
+
+      const clickedElement = event.target;
+      let id = '';
+
+      if (clickedElement.tagName == 'A'){
+        id = clickedElement.getAttribute(select.all.hrefAtt).replace('#', '');
+      } else if (clickedElement.hasAttribute(select.all.dataHref)){
+        id = clickedElement.getAttribute(select.all.dataHref).replace('#', '');
+      } else {
+        id = clickedElement.parentElement.getAttribute(select.all.dataHref).replace('#', '');
+      }
+      
+
+      thisApp.activatePage(id);
+      window.location.hash = '#/' + id;
+
+    });
   },
 
   activatePage: function(pageId){
@@ -76,8 +85,12 @@ const app = {
   initHome: function(){
     const thisApp = this;
 
-    new Home(thisApp.data.homePageData);
+    thisApp.home = new Home(thisApp.data.homePage);
+    // call for changePageListener here method to avoid
+    // undefined value for querySelector of select.home.links
+    thisApp.changePageListener(select.home.linksWrapper);
 
+    
   },
 
   initData: function(){
@@ -108,7 +121,7 @@ const app = {
         thisApp.initMenu();
 
         /* execute initHome method */
-        thisApp.data.homePageData = homePage;
+        thisApp.data.homePage = homePage;
         thisApp.initHome();
       });
   },
@@ -134,8 +147,8 @@ const app = {
   init: function(){
     const thisApp = this;
 
-    thisApp.initData();
     thisApp.initPages();
+    thisApp.initData();
     thisApp.initCart();
     thisApp.initBooking();
   },

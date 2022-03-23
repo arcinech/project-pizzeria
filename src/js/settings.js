@@ -17,6 +17,8 @@ export const select = {
     menuProducts: '#product-list > .product',
     menuProductsActive: '#product-list > .product.active',
     formInputs: 'input, select',
+    dataHref: 'data-href',
+    hrefAtt: 'href',
   },
   menuProduct: {
     clickable: '.product__header',
@@ -54,6 +56,7 @@ export const select = {
   },
   nav: {
     links: '.main-nav a',
+    linksWrapper: '.main-nav',
   },
   cart: {
     productList: '.cart__order-summary',
@@ -74,10 +77,8 @@ export const select = {
     remove: '[href="#remove"]',
   },
   home: {
-    links: 'home-links',
+    linksWrapper: '.home-links',
     carousel: '.main-carousel',
-    link: 'home-link',
-    dataHref: 'data-href',
     gallery: '.gallery',
   }
   // CODE ADDED END
@@ -103,7 +104,6 @@ export const classNames = {
   },
   pages: {
     active: 'active',
-    navBar: 'main-nav',
   }
 };
 
