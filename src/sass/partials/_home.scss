@@ -8,11 +8,18 @@
 
 .home-links {
   padding: 0 0 5px 0;
-
   @include flex(row, center, center);
   gap: 5px;
 
-  > * {
+  .home-link:first-of-type{
+    background: url('/images/assets/pizza-1.jpg') center;
+  }
+
+  .home-link:last-of-type{
+    background: url('/images/assets/pizza-2.jpg') center;
+  }
+
+  >* {
     @include btn(#000000, $color-light, #000000);
     @include flex(column, center, center);
     height: 120px;
@@ -24,7 +31,7 @@
     overflow: hidden;
     cursor: pointer;
 
-    > div {
+    >div {
       @include center();
       transition: all 1s;
       width: 100%;
@@ -32,6 +39,10 @@
       font-weight: $font-bold;
       font-size: 26px;
     }
+  }
+
+  &:first-child {
+    background: url('/src/images/assets/pizza-1.jpg') center no-repeat;
   }
 
   p {
@@ -45,8 +56,7 @@
     font-weight: $font-light;
   }
 
-  > div:hover {
-
+  >div:hover {
     div {
       transition: all 1s;
       top: 30%;
@@ -159,12 +169,14 @@
       opacity: 0;
       gap: 5px;
 
-      .like, .share {
+      .like,
+      .share {
         color: $color-light;
         transition: $transition;
       }
 
-      .like:hover, .share:hover {
+      .like:hover,
+      .share:hover {
         color: $color-main;
       }
     }
