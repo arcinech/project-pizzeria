@@ -27,7 +27,7 @@
     > div {
       @include center();
       transition: all 1s;
-      width: max-content;
+      width: 100%;
       font-family: $font-header;
       font-weight: $font-bold;
       font-size: 26px;
@@ -35,7 +35,7 @@
   }
 
   p {
-    width: max-content;
+    width: 100%;
     position: absolute;
     transition: all 1s;
     transform: translate(-50%, 40px);
@@ -47,7 +47,6 @@
 
   > div:hover {
 
-    // padding: 0 0 5%;
     div {
       transition: all 1s;
       top: 30%;
