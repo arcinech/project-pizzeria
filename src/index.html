@@ -7,8 +7,9 @@
   <title>Pizzeria</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <link href="https://fonts.googleapis.com/css?family=Lato:400,300i,700%7COswald:300,500,700&amp;subset=latin-ext" rel="stylesheet">
-  <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet">
-  <link rel="stylesheet" href="vendor/range-slider.min.js">
+  <link rel="stylesheet" href="vendor/flickity.css">
+  <link href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" rel="stylesheet">
+  <link rel="stylesheet" href="vendor/range-slider.min.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -21,6 +22,7 @@
           <h2 class="logo__subtitle">the best homemade Italian food</h2>
         </div>
         <div class="main-nav">
+          <a href="#home">Home</a>
           <a href="#order">Order</a>
           <a href="#booking">Booking</a>
       </div>
@@ -62,6 +64,9 @@
   </header>
 
   <div id="pages">
+    <section id="home">
+      <div id="home-page" class="home-page container"></div>
+    </section>
     <section id="order">
       <div id="product-list" class="product-list container"></div>
     </section>
@@ -243,7 +248,57 @@
     </div>
   </script>
 
+  <script id="template-home-page" type="text/x-handlebars-template">
+    <div class="home-inner">
+      <div class="splash">
+        <div class="home-links">
+          <div class="home-link" data-href="#order">
+            <div>ORDER ONLINE</div>
+            <p>Order delicious food</p>
+          </div>
+          <div class="home-link" data-href="#booking">
+            <div>Book Table</div>
+            <p>Book a table for dinner</p>
+          </div>
+        </div>
+        <div class="open-hours">
+          <h2>OPENING HOURS:</h2>
+          <p>TUE-SUN, {{openHours}}</p>
+        </div>
+      </div>
+      <div class="main-carousel">
+        {{#each carouselItem}}
+        <div class="carousel-cell">
+          <div class="carousel-image">
+            {{{ image }}}
+          </div>
+            <div class="carousel-text">
+              <h2 class="carousel-title">{{ title }}</h2>
+              <p>{{ text }}</p>
+              <p class="carousel-author">{{ author}}</p>
+            </div> 
+        </div>
+        {{/each}}
+      </div>
+      <div class="gallery">
+        {{#each gallery}}
+        <div class="gallery-image">
+          {{{ this }}}
+          <div class="icons">
+            <a class="like" href="#"><i class="fa-solid fa-heart"></i></a>
+            <a class="share" href="#"><i class="fa-solid fa-share-alt"></i></a>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+      <div class="notes">
+        <a href="#">View more on Instagram</a>
+      </div>
+    </div>
+  </script>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js"></script>
+  <script src="vendor/flickity.pkgd.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script src="vendor/range-slider.min.js"></script>
   <script src="js/app.js" type="module"></script>

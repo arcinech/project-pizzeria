@@ -3,6 +3,7 @@ export const select = {
     menuProduct: '#template-menu-product',
     cartProduct: '#template-cart-product',
     bookingWidget: '#template-booking-widget',
+    homePage: '#template-home-page',
   },
   containerOf: {
     menu: '#product-list',
@@ -10,11 +11,14 @@ export const select = {
     pages: '#pages',
     booking: '.booking-wrapper',
     floorPlan: '.floor-plan',
+    homeContainer: '#home-page',
   },
   all: {
     menuProducts: '#product-list > .product',
     menuProductsActive: '#product-list > .product.active',
     formInputs: 'input, select',
+    dataHref: 'data-href',
+    hrefAtt: 'href',
   },
   menuProduct: {
     clickable: '.product__header',
@@ -52,6 +56,7 @@ export const select = {
   },
   nav: {
     links: '.main-nav a',
+    linksWrapper: '.main-nav',
   },
   cart: {
     productList: '.cart__order-summary',
@@ -71,6 +76,11 @@ export const select = {
     edit: '[href="#edit"]',
     remove: '[href="#remove"]',
   },
+  home: {
+    linksWrapper: '.home-links',
+    carousel: '.main-carousel',
+    gallery: '.gallery',
+  }
   // CODE ADDED END
 };
 
@@ -128,6 +138,7 @@ export const settings = {
     dateEndParamKey: 'date_lte',
     notRepeatParam: 'repeat=false',
     repeatParam: 'repeat_ne=false',
+    homePage: 'homePage',
   },
 };
 
@@ -135,4 +146,5 @@ export const templates = {
   menuProduct: Handlebars.compile(document.querySelector(select.templateOf.menuProduct).innerHTML),
   cartProduct: Handlebars.compile(document.querySelector(select.templateOf.cartProduct).innerHTML),
   bookingWidget: Handlebars.compile(document.querySelector(select.templateOf.bookingWidget).innerHTML),
+  homePage: Handlebars.compile(document.querySelector(select.templateOf.homePage).innerHTML),
 };

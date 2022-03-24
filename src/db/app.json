@@ -202,6 +202,34 @@
           }
        }
     ],
+    "homePage":{
+       "gallery": [
+         "<img src=\"images/assets/pizza-4.jpg\" alt=\"alt text\">",
+         "<img src=\"images/assets/pizza-5.jpg\" alt=\"alt text\">",
+         "<img src=\"images/assets/pizza-6.jpg\" alt=\"alt text\">",
+         "<img src=\"images/assets/pizza-7.jpg\" alt=\"alt text\">",
+         "<img src=\"images/assets/pizza-8.jpg\" alt=\"alt text\">",
+         "<img src=\"images/assets/pizza-9.jpg\" alt=\"alt text\">"
+       ],
+       "carouselItem": [
+         {"image":"<img src=\"images/assets/pizza-1.jpg\" alt=\"alt text\">",
+           "title": "Cupidatat enim exercitation",
+           "text":"Lorem qui et pariatur culpa sint nisi. Dolore enim laboris exercitation incididunt officia ad ad quis enim ea et magna. Eu minim non qui ut amet aliqua cillum incididunt adipisicing velit aliquip laborum.",
+           "author":"Jake Frost"
+           },{
+            "image":"<img src=\"images/assets/pizza-2.jpg\" alt=\"alt text\">",
+           "title": "Esse officia labore",
+           "text":"Ex nisi nulla esse labore sit occaecat voluptate fugiat nostrud tempor. Id labore cillum Lorem deserunt. Do qui excepteur consectetur reprehenderit labore voluptate dolore ex duis aute nostrud. Ipsum ut proident reprehenderit id elit. Velit tempor aute non ut Lorem ea consectetur pariatur eu tempor ex irure.",
+           "author":"Jane Austin"
+         },
+           {
+            "image":"<img src=\"images/assets/pizza-3.jpg\" alt=\"alt text\">",
+           "title": "Culpa ullamco consequat",
+           "text":"Elit anim duis tempor consequat commodo tempor reprehenderit. Anim laborum in eu ut tempor proident cupidatat sit magna aute commodo qui consectetur. Sit irure aute id incididunt sit et occaecat nulla veniam. Aliquip excepteur consequat minim sit nulla dolor cillum proident. Tempor aliqua ipsum ut minim proident. Sint ipsum non laboris ullamco nulla anim tempor exercitation.",
+           "author":"Joe Brown"
+           }
+      ]
+   },
     "orders":[],
     "events": [
       {
