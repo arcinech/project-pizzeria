@@ -86,7 +86,7 @@ const app = {
     const thisApp = this;
 
     thisApp.home = new Home(thisApp.data.homePage);
-    // call for changePageListener here method to avoid
+    // call for addListenerForPageChange here method to avoid
     // undefined value for querySelector of select.home.links
     thisApp.addListenerForPageChange(select.home.linksWrapper);
     
