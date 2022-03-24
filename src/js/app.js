@@ -27,11 +27,11 @@ const app = {
 
     window.location.hash = '#/' + pageMatchingHash;
 
-    thisApp.addListenerForPageChange(select.nav.linksWrapper);
+    thisApp.initPageLinks(select.nav.linksWrapper);
 
   },
 
-  addListenerForPageChange(linksWrapper){
+  initPageLinks(linksWrapper){
     const thisApp = this;
     const linksWrapperElement = document.querySelector(linksWrapper);
 
@@ -88,7 +88,7 @@ const app = {
     thisApp.home = new Home(thisApp.data.homePage);
     // call for addListenerForPageChange here method to avoid
     // undefined value for querySelector of select.home.links
-    thisApp.addListenerForPageChange(select.home.linksWrapper);
+    thisApp.initPageLinks(select.home.linksWrapper);
     
   },
 
